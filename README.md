@@ -13,8 +13,8 @@ This came joint third in our hackdays.
 
 # WARNING
 
-As this was a hackdays project and I had to make MPS specific tweaks to Bark (specifically [bark with voice clond](https://github.com/serp-ai/bark-with-voice-clone)), this repo contains
-a snapshot of the source from this project with MPS fixes. I may return to clean this up, but until such a time please take this as the output of a hackday event.
+~~As this was a hackdays project and I had to make MPS specific tweaks to Bark (specifically [bark with voice clond](https://github.com/serp-ai/bark-with-voice-clone)), this repo contains
+a snapshot of the source from this project with MPS fixes. I may return to clean this up, but until such a time please take this as the output of a hackday event.~~
 
 # INSTALLATION
 
