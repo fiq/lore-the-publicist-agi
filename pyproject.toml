@@ -27,7 +27,8 @@ dependencies = [
     "shutup",
     "openai-whisper",
     "sounddevice",
-#    "xformers",
+    "shutup",
+    "xformers",
 #    "xformers @ https://github.com/facebookresearch/xformers",
 ]
 
