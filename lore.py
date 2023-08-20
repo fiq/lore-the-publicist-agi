@@ -15,6 +15,7 @@ import sounddevice as sd
 import pprint
 import whisper
 from transformers import GPTNeoForCausalLM, GPT2Tokenizer, pipeline
+
 generator = pipeline('text-generation', model='gpt2')
 preload_models()
 #tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased")
@@ -25,10 +26,10 @@ gpt_neo_model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B", pad
 pp = pprint.PrettyPrinter()
 DEVICE = "mps"
 LISTEN_FILE = "./hearing.wav"
-IMPERFECTIONS = ['[laughs]', '[sings]', '[exclaims]', 'lala', 'Mmmm', 'hmm', '🎵']
+IMPERFECTIONS = ['[laughs]', '[🎵sings🎵]', '[exclaims]', '🎵lala🎵', 'Mmmm', '🎵']
 
 model = whisper.load_model("base")
-voice_name="en_speaker_4"
+voice_name="en_speaker_5"
 
 
 def imperfectionise(thought_stream):
@@ -77,10 +78,10 @@ def sentience():
         print("I heard: " + text)
         response = comprehend_in_song(text)
         imperfect_response = imperfectionise( response )
-        print("Here's our campaign:") 
+        print("Here's our jingle:") 
         print(imperfect_response)
         print("Generating audio/song")
-        speech_patterns = say(imperfect_response, voice_name)
+        speech_patterns = say('🎵' + imperfect_response, voice_name)
         vocalise(speech_patterns)
 
 def clone_from_wav(voice_name, text, audio_filepath):
