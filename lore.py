@@ -25,7 +25,7 @@ gpt_neo_model = GPTNeoForCausalLM.from_pretrained("EleutherAI/gpt-neo-1.3B", pad
 pp = pprint.PrettyPrinter()
 DEVICE = "mps"
 LISTEN_FILE = "./hearing.wav"
-IMPERFECTIONS = ['[laughs]', '[exclaims]', 'ha', 'uh', 'hmm']
+IMPERFECTIONS = ['[laughs]', '[sings]', '[exclaims]', 'lala', 'Mmmm', 'hmm', '🎵']
 
 model = whisper.load_model("base")
 voice_name="en_speaker_4"
@@ -33,7 +33,7 @@ voice_name="en_speaker_4"
 
 def imperfectionise(thought_stream):
     words = thought_stream.split(' ')
-    for i in range(3):
+    for i in range(10):
         imperfection = IMPERFECTIONS[random.randint(0,len(IMPERFECTIONS)-1)]
         cut_point = random.randint(0, len(words)-1)
         words = words[0:cut_point] + [ imperfection ] + words[cut_point:]
@@ -47,8 +47,7 @@ def vocalise(audio_array):
     sd.wait()  
 
 def comprehend_in_song(text):
-    prompt = "Publicitity drive:\n" + text \
-        + "\nHere's a catchy song to publicise " + text +":\n🎵lala "
+    prompt = "Here's a catchy song to publicise " + text +":\n"
     input_ids = tokenizer(prompt, return_tensors="pt").input_ids
     gen_tokens = gpt_neo_model.generate(
         input_ids,
@@ -109,7 +108,7 @@ def say(text_prompt, voice_name):
     fine_use_gpu=True,
     fine_use_small=False,
     codec_use_gpu=True,
-    force_reload=False, #True, #was False
+    force_reload=False,
 #    path="models"
   )
   return generate_audio(text_prompt, history_prompt=voice_name)
